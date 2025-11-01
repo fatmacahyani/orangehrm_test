@@ -1,0 +1,62 @@
+{
+  "testSuite": "OrangeHRM Login Functionality",
+  "description": "Comprehensive test cases for OrangeHRM login feature",
+  "testCases": [
+    {
+      "id": "TC_001",
+      "title": "Valid Login with Correct Credentials",
+      "description": "Verify user can login with valid username and password",
+      "priority": "High",
+      "type": "Positive",
+      "expected": "User should be redirected to dashboard"
+    },
+    {
+      "id": "TC_002", 
+      "title": "Invalid Login with Wrong Username",
+      "description": "Verify login fails with invalid username and valid password",
+      "priority": "High",
+      "type": "Negative",
+      "expected": "Error message should be displayed"
+    },
+    {
+      "id": "TC_003",
+      "title": "Invalid Login with Wrong Password", 
+      "description": "Verify login fails with valid username and invalid password",
+      "priority": "High",
+      "type": "Negative",
+      "expected": "Error message should be displayed"
+    },
+    {
+      "id": "TC_004",
+      "title": "Invalid Login with Wrong Credentials",
+      "description": "Verify login fails with both invalid username and password",
+      "priority": "Medium",
+      "type": "Negative", 
+      "expected": "Error message should be displayed"
+    },
+    {
+      "id": "TC_005",
+      "title": "Empty Credentials Login Attempt",
+      "description": "Verify login fails when both fields are empty",
+      "priority": "Medium",
+      "type": "Negative",
+      "expected": "Required field validation should appear"
+    },
+    {
+      "id": "TC_008",
+      "title": "Special Characters in Username",
+      "description": "Verify login behavior with special characters in username",
+      "priority": "Low",
+      "type": "Negative", 
+      "expected": "Should handle special characters gracefully"
+    },
+    {
+      "id": "TC_010",
+      "title": "SQL Injection Attack Prevention",
+      "description": "Verify system prevents SQL injection in login fields",
+      "priority": "High",
+      "type": "Security",
+      "expected": "Should prevent SQL injection attacks"
+    }
+  ]
+}

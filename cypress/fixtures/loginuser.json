@@ -1,0 +1,66 @@
+{
+  "validCredentials": {
+    "username": "Admin",
+    "password": "admin123"
+  },
+  "invalidCredentials": [
+    {
+      "testCase": "TC_002",
+      "username": "InvalidUser",
+      "password": "admin123",
+      "expectedError": "Invalid credentials"
+    },
+    {
+      "testCase": "TC_003", 
+      "username": "Admin",
+      "password": "wrongpassword",
+      "expectedError": "Invalid credentials"
+    },
+    {
+      "testCase": "TC_004",
+      "username": "InvalidUser",
+      "password": "wrongpassword", 
+      "expectedError": "Invalid credentials"
+    }
+  ],
+  "emptyCredentials": [
+    {
+      "testCase": "TC_005",
+      "username": "",
+      "password": "",
+      "expectedError": "Username : Required"
+    },
+    {
+      "testCase": "TC_006",
+      "username": "",
+      "password": "admin123",
+      "expectedError": "Username : Required"
+    },
+    {
+      "testCase": "TC_007",
+      "username": "Admin",
+      "password": "",
+      "expectedError": "Password : Required"
+    }
+  ],
+  "specialCharacters": [
+    {
+      "testCase": "TC_008",
+      "username": "Admin@#$",
+      "password": "admin123",
+      "expectedError": "Invalid credentials"
+    },
+    {
+      "testCase": "TC_009",
+      "username": "Admin",
+      "password": "admin@#$",
+      "expectedError": "Invalid credentials"
+    }
+  ],
+  "sqlInjection": {
+    "testCase": "TC_010",
+    "username": "' OR '1'='1",
+    "password": "' OR '1'='1",
+    "expectedError": "Invalid credentials"
+  }
+}
