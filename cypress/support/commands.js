@@ -44,12 +44,12 @@ Cypress.Commands.add('takeScreenshotWithTimestamp', (name) => {
 
 // Custom command untuk check page elements visibility
 Cypress.Commands.add('verifyLoginPageElements', () => {
-  cy.get('.orangehrm-login-branding img').should('be.visible') // Logo
-  cy.get('.orangehrm-login-title').should('contain.text', 'Login') // Title
-  cy.get('[name="username"]').should('be.visible') // Username field
-  cy.get('[name="password"]').should('be.visible') // Password field
-  cy.get('[type="submit"]').should('be.visible') // Login button
-  cy.get('.orangehrm-copyright').should('be.visible') // Footer
+  cy.get('.orangehrm-login-branding img').should('be.visible') 
+  cy.get('.orangehrm-login-title').should('contain.text', 'Login') 
+  cy.get('[name="username"]').should('be.visible') 
+  cy.get('[name="password"]').should('be.visible') 
+  cy.get('[type="submit"]').should('be.visible') 
+  cy.get('.orangehrm-copyright').should('be.visible')
 })
 
 // Custom command untuk logout

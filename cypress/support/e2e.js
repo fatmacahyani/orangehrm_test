@@ -1,15 +1,13 @@
-// ***********************************************************
 // Support file for OrangeHRM Test Automation
-// ***********************************************************
 
 import './commands'
 
-// Import any additional plugins or configurations
+
 require('cypress-xpath')
 
 // Global error handling
 Cypress.on('uncaught:exception', (err, runnable) => {
-  // Returning false prevents Cypress from failing the test
+  // Returning false
   if (err.message.includes('ResizeObserver loop limit exceeded')) {
     return false
   }
