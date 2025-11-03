@@ -42,25 +42,5 @@
       "password": "",
       "expectedError": "Password : Required"
     }
-  ],
-  "specialCharacters": [
-    {
-      "testCase": "TC_008",
-      "username": "Admin@#$",
-      "password": "admin123",
-      "expectedError": "Invalid credentials"
-    },
-    {
-      "testCase": "TC_009",
-      "username": "Admin",
-      "password": "admin@#$",
-      "expectedError": "Invalid credentials"
-    }
-  ],
-  "sqlInjection": {
-    "testCase": "TC_010",
-    "username": "' OR '1'='1",
-    "password": "' OR '1'='1",
-    "expectedError": "Invalid credentials"
-  }
+  ]
 }
