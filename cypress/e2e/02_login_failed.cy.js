@@ -5,7 +5,7 @@ describe('OrangeHRM Login - Failed Login Test', () => {
   })
 
   context('Invalid Credentials Tests', () => {
-    it('TC_002: Should show error with invalid username and valid password', () => {
+    it('Should show error with invalid username and valid password', () => {
       cy.fixture('loginTestData').then((testData) => {
         const testCase = testData.invalidCredentials[0]
         cy.log(`**${testCase.testCase}: Testing invalid username**`)
