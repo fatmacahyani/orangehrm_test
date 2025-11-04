@@ -26,7 +26,7 @@ describe('OrangeHRM Login - Performance and Load Tests', () => {
       
       const startTime = Date.now()
       
-      cy.fixture('loginTestData').then((testData) => {
+      cy.fixture('loginuser').then((testData) => {
         cy.loginWithCredentials(
           testData.validCredentials.username, 
           testData.validCredentials.password

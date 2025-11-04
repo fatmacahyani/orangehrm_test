@@ -6,7 +6,7 @@ describe('OrangeHRM Login - Failed Login Test', () => {
 
   context('Invalid Credentials Tests', () => {
     it('Should show error with invalid username and valid password', () => {
-      cy.fixture('loginTestData').then((testData) => {
+      cy.fixture('loginuser').then((testData) => {
         const testCase = testData.invalidCredentials[0]
         cy.log(`**${testCase.testCase}: Testing invalid username**`)
         
@@ -29,7 +29,7 @@ describe('OrangeHRM Login - Failed Login Test', () => {
     })
 
     it('Should show error with valid username and invalid password', () => {
-      cy.fixture('loginTestData').then((testData) => {
+      cy.fixture('loginuser').then((testData) => {
         const testCase = testData.invalidCredentials[1]
         cy.log(`**${testCase.testCase}: Testing invalid password**`)
         
@@ -52,7 +52,7 @@ describe('OrangeHRM Login - Failed Login Test', () => {
     })
 
     it('Should show error with both invalid credentials', () => {
-      cy.fixture('loginTestData').then((testData) => {
+      cy.fixture('loginuser').then((testData) => {
         const testCase = testData.invalidCredentials[2]
         cy.log(`**${testCase.testCase}: Testing both invalid credentials**`)
         
@@ -76,7 +76,7 @@ describe('OrangeHRM Login - Failed Login Test', () => {
   })
   context('Empty Fields Validation Tests', () => {
     it('Should show validation error when both fields are empty', () => {
-      cy.fixture('loginTestData').then((testData) => {
+      cy.fixture('loginuser').then((testData) => {
         const testCase = testData.emptyCredentials[0]
         cy.log(`**${testCase.testCase}: Testing empty credentials**`)
         

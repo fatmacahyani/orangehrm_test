@@ -6,7 +6,7 @@ describe('OrangeHRM Login - Security Tests', () => {
 
   context('SQL Injection Prevention', () => {
     it('Should prevent SQL injection attacks in login fields', () => {
-      cy.fixture('loginTestData').then((testData) => {
+      cy.fixture('loginuser').then((testData) => {
         const testCase = testData.sqlInjection
         cy.log(`**${testCase.testCase}: Testing SQL injection prevention**`)
         

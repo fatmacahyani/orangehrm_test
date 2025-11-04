@@ -6,8 +6,7 @@ describe('OrangeHRM Login - Login Success Test', () => {
 
   context('Valid Login Scenarios', () => {
     it('Should successfully login with valid credentials and redirect to dashboard', () => {
-      // Test Data
-      cy.fixture('LoginTest').then((testData) => {
+      cy.fixture('loginuser').then((testData) => {
         // Test Steps
         cy.log('**Testing valid login credentials**')
         
@@ -51,7 +50,7 @@ describe('OrangeHRM Login - Login Success Test', () => {
     })
 
     it('Should maintain session and allow navigation after login', () => {
-      cy.fixture('LoginTest').then((testData) => {
+      cy.fixture('loginuser').then((testData) => {
         cy.log('**Testing session maintenance**')
 
         // Login

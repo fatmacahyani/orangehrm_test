@@ -81,19 +81,33 @@ orangehrm_test/
 ### Interactive Mode (Cypress Test Runner)
 
 ```bash
-npx cypress open
+npm run test:open
 ```
 
 ### Headless Mode (Command Line)
 
 ```bash
-npx cypress run
+npm test
 ```
 
-### Run Specific Test File
+### Run Specific Test Suites
 
 ```bash
-npx cypress run --spec "cypress/e2e/spec.cy.js"
+# Run login success tests
+npm run test:success
+
+# Run login failure tests  
+npm run test:failed
+
+# Run intercept monitoring tests
+npm run test:intercept
+
+# Run performance tests
+npm run test:performance
+
+# Run with specific browser
+npm run test:chrome
+npm run test:firefox
 ```
 
 ## Test Data

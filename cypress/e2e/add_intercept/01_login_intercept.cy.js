@@ -1,32 +1,17 @@
 describe('OrangeHRM Login Success - With Intercept', () => {
   beforeEach(() => {
-    // Intercept khusus untuk login success
-    cy.intercept('POST', '**/auth/validate', (req) => {
-      // Validasi request body untuk login success
-      if (req.body.username === 'Admin' && req.body.password === 'admin123') {
-        req.reply({
-          statusCode: 302,
-          headers: {
-            'Location': '/web/index.php/dashboard/index',
-            'Set-Cookie': 'orangehrm=valid_session_token; Path=/'
-          },
-          body: {
-            success: true,
-            redirect: '/web/index.php/dashboard/index'
-          }
-        })
-      }
-    }).as('loginSuccessRequest')
-
-    // Intercept untuk dashboard data setelah login berhasil
-    cy.intercept('GET', '**/dashboard/index', {
-      statusCode: 200,
-      fixture: 'dashboard-data.json'
-    }).as('dashboardDataRequest')
+    cy.visit('/web/index.php/auth/login')
+    cy.waitForPageLoad()
+    
+    // Intercept untuk monitoring login requests (tidak mengubah response)
+    cy.intercept('POST', '**/auth/validate').as('loginRequest')
+    
+    // Intercept untuk monitoring dashboard loading
+    cy.intercept('GET', '**/dashboard/**').as('dashboardRequest')
   })
 
-  it('Should successfully login with valid credentials using intercept', () => {
-    cy.fixture('LoginTest').then((testData) => {
+  it('Should successfully login with valid credentials using intercept monitoring', () => {
+    cy.fixture('loginuser').then((testData) => {
       cy.log('**Testing valid login with intercept monitoring**')
       
       // Verify login page elements
@@ -42,19 +27,13 @@ describe('OrangeHRM Login Success - With Intercept', () => {
       cy.get('[type="submit"]').click()
       
       // Wait for and verify login request intercept
-      cy.wait('@loginSuccessRequest').then((interception) => {
+      cy.wait('@loginRequest').then((interception) => {
         expect(interception.request.body).to.deep.include({
           username: 'Admin',
           password: 'admin123'
         })
-        expect(interception.response.statusCode).to.eq(302)
-        cy.log('Login request intercepted successfully')
-      })
-      
-      // Wait for dashboard data request
-      cy.wait('@dashboardDataRequest').then((interception) => {
-        expect(interception.response.statusCode).to.eq(200)
-        cy.log('Dashboard data loaded successfully')
+        cy.log('Login request intercepted and monitored successfully')
+        cy.log(`Response status: ${interception.response.statusCode}`)
       })
       
       // Verify successful login
@@ -67,22 +46,16 @@ describe('OrangeHRM Login Success - With Intercept', () => {
   })
 
   it('Should maintain session with intercept validation', () => {
-    // Intercept untuk session validation
-    cy.intercept('GET', '**/auth/validateSession', {
-      statusCode: 200,
-      body: { valid: true, user: 'Admin' }
-    }).as('sessionValidation')
-
-    cy.fixture('LoginTest').then((testData) => {
+    cy.fixture('loginuser').then((testData) => {
       cy.loginWithCredentials(testData.validCredentials.username, testData.validCredentials.password)
       
-      // Wait for login success
-      cy.wait('@loginSuccessRequest')
+      // Wait for login request
+      cy.wait('@loginRequest')
       cy.verifyLoginSuccess()
       
       // Navigate and verify session
       cy.get('[href="/web/index.php/admin/viewAdminModule"]').click()
-      cy.wait('@sessionValidation')
+      cy.url().should('include', '/admin')
       
       cy.logout()
     })

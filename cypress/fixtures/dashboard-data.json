@@ -1,0 +1,39 @@
+{
+  "dashboardWidgets": [
+    {
+      "id": "time_at_work",
+      "title": "Time at Work Today",
+      "value": "00:00",
+      "type": "time"
+    },
+    {
+      "id": "my_actions",
+      "title": "My Actions",
+      "value": 5,
+      "type": "counter"
+    },
+    {
+      "id": "quick_launch",
+      "title": "Quick Launch",
+      "items": [
+        "Assign Leave",
+        "Leave List",
+        "Timesheets",
+        "Apply Leave"
+      ]
+    }
+  ],
+  "user": {
+    "name": "Admin",
+    "role": "Admin",
+    "employeeId": "EMP001"
+  },
+  "notifications": {
+    "count": 3,
+    "items": [
+      "Leave request pending approval",
+      "Timesheet submission due",
+      "Performance review scheduled"
+    ]
+  }
+}

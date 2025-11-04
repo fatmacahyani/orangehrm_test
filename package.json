@@ -3,12 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",
+    "test:open": "cypress open",
+    "test:chrome": "cypress run --browser chrome",
+    "test:firefox": "cypress run --browser firefox",
+    "test:success": "cypress run --spec \"cypress/e2e/01_login_success.cy.js\"",
+    "test:failed": "cypress run --spec \"cypress/e2e/02_login_failed.cy.js\"",
+    "test:intercept": "cypress run --spec \"cypress/e2e/add_intercept/**\"",
+    "test:performance": "cypress run --spec \"cypress/e2e/add_intercept/03_performance.cy.js\""
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["cypress", "testing", "orangehrm", "e2e", "automation"],
+  "author": "fatmacahyani",
   "license": "ISC",
-  "description": "",
+  "description": "OrangeHRM Login Test Automation using Cypress",
   "devDependencies": {
     "cypress": "^15.5.0",
     "cypress-xpath": "^2.0.1"
