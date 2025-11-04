@@ -42,16 +42,19 @@ orangehrm_test/
 ## Test Cases
 
 ### High Priority Tests
+
 - **TC_001**: Valid Login with Correct Credentials
-- **TC_002**: Invalid Login with Wrong Username  
+- **TC_002**: Invalid Login with Wrong Username
 - **TC_003**: Invalid Login with Wrong Password
 - **TC_010**: SQL Injection Attack Prevention
 
 ### Medium Priority Tests
+
 - **TC_004**: Invalid Login with Wrong Credentials
 - **TC_005**: Empty Credentials Login Attempt
 
 ### Low Priority Tests
+
 - **TC_008**: Special Characters in Username
 
 ## Prerequisites
@@ -62,6 +65,7 @@ orangehrm_test/
 ## Installation
 
 1. Clone this repository:
+
    ```bash
    git clone <repository-url>
    cd orangehrm_test
@@ -75,16 +79,19 @@ orangehrm_test/
 ## Running Tests
 
 ### Interactive Mode (Cypress Test Runner)
+
 ```bash
 npx cypress open
 ```
 
 ### Headless Mode (Command Line)
+
 ```bash
 npx cypress run
 ```
 
 ### Run Specific Test File
+
 ```bash
 npx cypress run --spec "cypress/e2e/spec.cy.js"
 ```
@@ -99,6 +106,7 @@ The project uses JSON fixtures to manage test data:
 ## Configuration
 
 Cypress configuration can be modified in `cypress.config.js` file to:
+
 - Set base URL
 - Configure viewport settings
 - Set timeout values
