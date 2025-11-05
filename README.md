@@ -30,7 +30,7 @@ This test automation project focuses on comprehensive testing of the OrangeHRM l
 
 ## Prerequisites
 
-- Node.js
+- Node.js (v14 or higher)
 - npm or yarn package manager
 
 ## Installation
