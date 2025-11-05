@@ -19,8 +19,9 @@ describe('OrangeHRM Login Failed - With Intercept', () => {
         
         // Monitor the login attempt
         cy.wait('@loginAttempt').then((interception) => {
-          expect(interception.request.body.username).to.eq('InvalidUser')
-          expect(interception.request.body.password).to.eq('admin123')
+          const requestBody = interception.request.body
+          expect(requestBody).to.include('username=InvalidUser')
+          expect(requestBody).to.include('password=admin123')
           cy.log('Invalid username request monitored successfully')
           cy.log(`Response status: ${interception.response.statusCode}`)
         })
@@ -41,8 +42,9 @@ describe('OrangeHRM Login Failed - With Intercept', () => {
         
         // Monitor the login attempt
         cy.wait('@loginAttempt').then((interception) => {
-          expect(interception.request.body.username).to.eq('Admin')
-          expect(interception.request.body.password).to.eq('wrongpassword')
+          const requestBody = interception.request.body
+          expect(requestBody).to.include('username=Admin')
+          expect(requestBody).to.include('password=wrongpassword')
           cy.log('Invalid password request monitored successfully')
           cy.log(`Response status: ${interception.response.statusCode}`)
         })
@@ -63,8 +65,9 @@ describe('OrangeHRM Login Failed - With Intercept', () => {
         
         // Monitor the login attempt
         cy.wait('@loginAttempt').then((interception) => {
-          expect(interception.request.body.username).to.eq('InvalidUser')
-          expect(interception.request.body.password).to.eq('wrongpassword')
+          const requestBody = interception.request.body
+          expect(requestBody).to.include('username=InvalidUser')
+          expect(requestBody).to.include('password=wrongpassword')
           cy.log('Both invalid credentials request monitored successfully')
           cy.log(`Response status: ${interception.response.statusCode}`)
         })

@@ -7,10 +7,25 @@
     "test:open": "cypress open",
     "test:chrome": "cypress run --browser chrome",
     "test:firefox": "cypress run --browser firefox",
-    "test:success": "cypress run --spec \"cypress/e2e/01_login_success.cy.js\"",
-    "test:failed": "cypress run --spec \"cypress/e2e/02_login_failed.cy.js\"",
+    
+    "test:success": "cypress run --spec \"cypress/e2e/origin/01_login_success.cy.js\"",
+    "test:failed": "cypress run --spec \"cypress/e2e/origin/02_login_failed.cy.js\"",
+    "test:security": "cypress run --spec \"cypress/e2e/origin/03_login_security.cy.js\"",
+    "test:performance": "cypress run --spec \"cypress/e2e/origin/04_login_performance.cy.js\"",
+    
     "test:intercept": "cypress run --spec \"cypress/e2e/add_intercept/**\"",
-    "test:performance": "cypress run --spec \"cypress/e2e/add_intercept/03_performance.cy.js\""
+    "test:intercept:success": "cypress run --spec \"cypress/e2e/add_intercept/01_login_intercept.cy.js\"",
+    "test:intercept:failed": "cypress run --spec \"cypress/e2e/add_intercept/02_login_failed.cy.js\"",
+    "test:intercept:performance": "cypress run --spec \"cypress/e2e/add_intercept/03_performance.cy.js\"",
+    
+    "test:pom": "cypress run --spec \"cypress/e2e/add_pom/**\"",
+    "test:pom:success": "cypress run --spec \"cypress/e2e/add_pom/01_login_success_pom.cy.js\"",
+    "test:pom:failed": "cypress run --spec \"cypress/e2e/add_pom/02_login_failed_pom.cy.js\"",
+    "test:pom:security": "cypress run --spec \"cypress/e2e/add_pom/03_login_security_pom.cy.js\"",
+    
+    "test:all:origin": "cypress run --spec \"cypress/e2e/origin/**\"",
+    "test:all:intercept": "cypress run --spec \"cypress/e2e/add_intercept/**\"",
+    "test:all:pom": "cypress run --spec \"cypress/e2e/add_pom/**\""
   },
   "keywords": ["cypress", "testing", "orangehrm", "e2e", "automation"],
   "author": "fatmacahyani",

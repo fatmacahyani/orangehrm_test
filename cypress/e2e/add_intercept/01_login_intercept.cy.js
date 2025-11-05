@@ -28,10 +28,10 @@ describe('OrangeHRM Login Success - With Intercept', () => {
       
       // Wait for and verify login request intercept
       cy.wait('@loginRequest').then((interception) => {
-        expect(interception.request.body).to.deep.include({
-          username: 'Admin',
-          password: 'admin123'
-        })
+        // Check if request body contains the credentials (form-encoded data)
+        const requestBody = interception.request.body
+        expect(requestBody).to.include('username=Admin')
+        expect(requestBody).to.include('password=admin123')
         cy.log('Login request intercepted and monitored successfully')
         cy.log(`Response status: ${interception.response.statusCode}`)
       })

@@ -12,7 +12,6 @@ This test automation project focuses on comprehensive testing of the OrangeHRM l
 - **Language**: JavaScript
 - **Test Data**: JSON fixtures
 
-
 ## Test Cases
 
 - **TC_001**: Valid Login with Correct Credentials
@@ -37,6 +36,7 @@ This test automation project focuses on comprehensive testing of the OrangeHRM l
 ## Installation
 
 1. Clone this repository:
+
    ```bash
    git clone <repository-url>
    cd orangehrm_test
@@ -67,7 +67,7 @@ npm test
 # Run login success tests
 npm run test:success
 
-# Run login failure tests  
+# Run login failure tests
 npm run test:failed
 
 # Run intercept monitoring tests

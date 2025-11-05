@@ -76,10 +76,11 @@ describe('OrangeHRM Login Performance - With Intercept', () => {
         // Monitor network request
         cy.wait('@networkMonitoring').then((interception) => {
           expect(interception.request.method).to.eq('POST')
-          expect(interception.request.body).to.have.property('username')
-          expect(interception.request.body).to.have.property('password')
+          const requestBody = interception.request.body
+          expect(requestBody).to.include('username=Admin')
+          expect(requestBody).to.include('password=admin123')
           cy.log('Network request monitored successfully')
-          cy.log(`Request size: ${JSON.stringify(interception.request.body).length} bytes`)
+          cy.log(`Request size: ${requestBody.length} bytes`)
         })
         
         cy.verifyLoginSuccess()

@@ -1,3 +1,21 @@
+// ***********************************************
+// Custom commands for OrangeHRM Test Automation
+// Supports both standard and Page Object Model approaches
+// ***********************************************
+
+// Import Page Objects for POM commands
+let LoginPage, DashboardPage
+try {
+  LoginPage = require('../page-objects/LoginPage').default
+  DashboardPage = require('../page-objects/DashboardPage').default
+} catch (e) {
+  // POM files not available, skip POM commands
+}
+
+// ===============================================
+// STANDARD COMMANDS (for original test files)
+// ===============================================
+
 // Custom command untuk clear session dan cookies
 Cypress.Commands.add('clearSession', () => {
   cy.clearCookies()
@@ -57,4 +75,57 @@ Cypress.Commands.add('logout', () => {
   cy.get('.oxd-userdropdown').click()
   cy.get('[href="/web/index.php/auth/logout"]').click()
   cy.url().should('include', '/web/index.php/auth/login')
+})
+
+// ===============================================
+// PAGE OBJECT MODEL COMMANDS (for POM test files)
+// ===============================================
+
+// POM-based login command
+Cypress.Commands.add('loginViaPOM', (username, password) => {
+  if (LoginPage && DashboardPage) {
+    const loginPage = new LoginPage()
+    const dashboardPage = new DashboardPage()
+    
+    loginPage
+      .visit()
+      .loginWithCredentials(username, password)
+    
+    dashboardPage.waitForDashboardLoad()
+  } else {
+    throw new Error('Page Object files not found. Please ensure LoginPage.js and DashboardPage.js exist.')
+  }
+})
+
+// POM-based logout command
+Cypress.Commands.add('logoutViaPOM', () => {
+  if (DashboardPage) {
+    const dashboardPage = new DashboardPage()
+    dashboardPage.logout()
+  } else {
+    throw new Error('DashboardPage.js not found.')
+  }
+})
+
+// Test data loading command
+Cypress.Commands.add('loadTestData', (dataType) => {
+  return cy.fixture('loginuser').then((data) => {
+    return data[dataType]
+  })
+})
+
+// Page Object factory command
+Cypress.Commands.add('getPageObject', (pageName) => {
+  if (!LoginPage || !DashboardPage) {
+    throw new Error('Page Object files not found.')
+  }
+  
+  switch(pageName.toLowerCase()) {
+    case 'login':
+      return new LoginPage()
+    case 'dashboard':
+      return new DashboardPage()
+    default:
+      throw new Error(`Page object '${pageName}' not found`)
+  }
 })
